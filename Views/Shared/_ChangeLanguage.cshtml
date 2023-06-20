@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Localization;
+@using Microsoft.AspNetCore.Mvc.Localization;
+@inject IViewLocalizer localizer;
+
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"{Context.Request.Path.Value}";
+}
+
+<form asp-controller="Home" asp-action="ChangeLanguage"
+      asp-route-returnUrl="@returnUrl" method="post"
+      role="form" style="display: inline;">
+    <button type="submit" name="culture" value="es" class="btn">
+        <img src="./img/flags/es.png" alt="Spanish" class="img-fluid" style="width: 30px;" />
+    </button>
+
+    
+    <button type="submit" name="culture" value="en" class="btn">
+        <img src="./img/flags/en.png" alt="English" class="img-fluid" style="width: 30px;"/>
+    </button>
+</form>
